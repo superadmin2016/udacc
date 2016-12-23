@@ -4,6 +4,10 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 class Config(object):
     SQLALCHEMY_COMMIT_ON_TEARDOWN = True
     
+    @staticmethod
+    def init_app(app):
+        pass
+    
 class DevelopmentConfig(Config):
     DEBUG = True
     SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://root:password_123@localhost/udacc_dev'
