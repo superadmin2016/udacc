@@ -7,15 +7,24 @@ from .forms import LoginForm, RegistrationForm
 from ..email import send_mail
 
 @auth.route('/login', methods=['GET', 'POST'])
-def login():
+def login():    
     form = LoginForm()
     if (form.validate_on_submit()):
+        #app.logger.debug('validated LoginForm...')
         user = User.query.filter_by(email = form.email.data).first()
         if user is not None and user.verify_password(form.password.data):
             login_user(user, form.remember_me.data)
             return redirect(request.args.get('next') or url_for('main.index'))
-        flash('Invalid username or password')
-    return render_template('auth/login.html', form=form)
+        else:
+            #app.logger.debug('Invalid username or password')
+            flash('Invalid username or password')
+            return redirect(url_for('auth.login'))
+    else:
+        print('LoginForm validation failed...')
+        for field, errors in form.errors.items():
+            for error in errors:
+                print(field + ':' + error)
+        return render_template('auth/login.html', form=form)
 
 @auth.route('/logout')
 @login_required

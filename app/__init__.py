@@ -8,7 +8,6 @@ from wsgiref.util import application_uri
 from config import config
 from flask_login import LoginManager
 
-app = Flask(__name__)
 bootstrap = Bootstrap()
 moment = Moment()
 mail = Mail()
@@ -19,7 +18,8 @@ login_manager.session_protection = 'strong'
 login_manager.login_view = 'auth.login'
 
 def create_app(config_name):
-    app = Flask(__name__)
+    #print("Creating app for config: " + config_name)
+    app = Flask('app')
     app.config.from_object(config[config_name])
     config[config_name].init_app(app)
     

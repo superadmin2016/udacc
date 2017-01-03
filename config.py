@@ -18,12 +18,13 @@ class DevelopmentConfig(Config):
     MAIL_USE_TLS = True
     MAIL_USERNAME = 'udac.dev@gmail.com'
     MAIL_PASSWORD = 'password_123'
-    SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://root:password_123@localhost/udacc_dev'        
+    SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://root:password_123@localhost/udacc_dev'
+    WTF_CSRF_ENABLED = False        
     
 class TestingConfig(Config):
     TESTING = True
     SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://root:password_123@localhost/udacc_testing'
-    
+    WTF_CSRF_ENABLED = False
 class ProductionConfig(Config):
     SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://root:password_123@localhost/udacc_prod'
     
