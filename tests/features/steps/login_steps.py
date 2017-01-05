@@ -17,5 +17,4 @@ def login(context, username, password):
 
 @then(u'i should see the alert "{message}"')
 def logged_in(context, message):
-    #print(str(context.page.data, 'utf-8'))
     assert str.encode(message) in context.page.data
