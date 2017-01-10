@@ -19,4 +19,5 @@ def click_on_registration_link(context):
 
 @then(u'I should see the registration page')
 def should_see_registration_page(context):
+    #Change this in future to lookup some unique string on the page
     assert context.page.status_code == 200
